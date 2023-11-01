@@ -91,7 +91,7 @@ public class ShelterControllerTest {
     }
 
     @Test
-    void updatePerson() throws Exception {
+    void updateBook() throws Exception {
         BookRequest bookRequest = new BookRequest();
         bookRequest.setName("Dic");
         bookRequest.setBookDate(new Date());
@@ -112,7 +112,7 @@ public class ShelterControllerTest {
     }
 
     @Test
-    void deletePerson() throws Exception {
+    void deleteBook() throws Exception {
 
         doNothing().when(shelterService)
                 .delete(EXPECTED_BOOK_ID);

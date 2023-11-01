@@ -1,10 +1,13 @@
 package com.agrotep.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+
 import java.util.Date;
 
 @Entity
@@ -23,5 +26,7 @@ public class Book {
     String name;
 
     @Column(name = "book_date", nullable = false)
+    @NotNull
+    @Past
     Date bookDate;
 }
