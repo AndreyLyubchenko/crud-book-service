@@ -1,18 +1,38 @@
-version: "3"
+version: '3'
 services:
-  postgres:
-    image: library/postgres:13
-    container_name: agrep_container
-    restart: on-failure
+  mysql:
+    image: mysql:8
+    container_name: mysql_container
     environment:
-      POSTGRES_USER: agrep
-      POSTGRES_PASSWORD: "123"
-      POSTGRES_DB: agrepDB
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: agrepDB
+      MYSQL_USER: agrep
+      MYSQL_PASSWORD: "123"
     volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./postgres/:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/mysql
+      - ./mysql/:/docker-entrypoint-initdb.d/
     ports:
-      - 5432:5432
+      - "3306:3306"
 
 volumes:
   db-data:
+
+
+#version: "3"
+#services:
+#  postgres:
+#    image: library/postgres:13
+#    container_name: agrep_container
+#    restart: on-failure
+#    environment:
+#      POSTGRES_USER: agrep
+#      POSTGRES_PASSWORD: "123"
+#      POSTGRES_DB: agrepDB
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#      - ./postgres/:/docker-entrypoint-initdb.d/
+#    ports:
+#      - 5432:5432
+#
+#volumes:
+#  db-data:
