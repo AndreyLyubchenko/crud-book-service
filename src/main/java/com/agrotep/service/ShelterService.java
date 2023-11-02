@@ -17,5 +17,7 @@ public interface ShelterService {
 
     void delete(long id);
 
+    List<BookFullResponse> getAllSortedByName();
+
 
 }

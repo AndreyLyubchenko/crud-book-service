@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<style>
+		.add-book-button {
+			background-color: #2cffb8;
+			color: black;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+
+		.add-book-button + h1 {
+			margin-bottom: 40px;
+		}
+
+		.add-book-button + table {
+			margin-top: 20px;
+		}
+
+		table td:nth-child(2), table td:nth-child(3) {
+			padding-right: 20px;
+		}
+	</style>
+</head>
+<body>
+<br>
+<a th:href="@{/shelter-book-sorted}">Shelter Books</a>
+
+<br>
+<br>
+
+<a th:href="@{/new}">
+	<button class="add-book-button">Add Book</button>
+</a>
+
+<table>
+	<tr th:each="book : ${books}">
+		<td th:text="${book.id}">ID</td>
+		<td th:text="${book.name}">Name</td>
+		<td th:text="${book.bookDate}">Book Date</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -12,13 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityNotFoundException;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ShelterServiceImpl implements ShelterService {
 
     final ShelterRepository shelterRepository;
@@ -37,13 +39,13 @@ public class ShelterServiceImpl implements ShelterService {
 
     @Override
     @Transactional
-    public Long create( BookRequest bookRequest) {
+    public Long create(BookRequest bookRequest) {
 
         Book book = new Book();
         book.setName(bookRequest.getName());
         book.setBookDate(bookRequest.getBookDate());
 
-       return shelterRepository.save(book).getId();
+        return shelterRepository.save(book).getId();
     }
 
     @Override
@@ -52,7 +54,7 @@ public class ShelterServiceImpl implements ShelterService {
 
         Optional<Book> book = shelterRepository.findById(id);
 
-       return book.map(bookMapper::getBookFullResponse)
+        return book.map(bookMapper::getBookFullResponse)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found for id: " + id));
 
 
@@ -82,5 +84,15 @@ public class ShelterServiceImpl implements ShelterService {
         Book book = bookOptional.orElseThrow(() -> new EntityNotFoundException("Book not found for id: " + id));
 
         shelterRepository.deleteById(book.getId());
+    }
+
+    @Override
+    @Transactional
+    public List<BookFullResponse> getAllSortedByName() {
+        List<BookFullResponse> bookFullResponseList = getAll();
+
+        bookFullResponseList.sort(Comparator.comparing(BookFullResponse::getName));
+
+        return bookFullResponseList;
     }
 }

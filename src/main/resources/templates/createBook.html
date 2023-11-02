@@ -1,0 +1,32 @@
+<style>
+    .error-message {
+        color: red;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book</title>
+</head>
+<body>
+<h1>Create a New Book</h1>
+
+<!-- Display the error message if it's present -->
+<div th:if="${error_message}" class="error-message">
+    <p th:text="${error_message}"></p>
+</div>
+
+<form method="POST" action="/create">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="bookDate">Book Date:</label>
+    <input type="datetime-local" id="bookDate" name="bookDate" required pattern="yyyy-MM-dd'T'HH:mm"><br><br>
+
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>
+

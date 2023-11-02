@@ -26,7 +26,5 @@ public class Book {
     String name;
 
     @Column(name = "book_date", nullable = false)
-    @NotNull
-    @Past
     Date bookDate;
 }
