@@ -1,21 +1,39 @@
+#version: '3'
+#services:
+#  mysql:
+#    image: mysql:8
+#    container_name: mysql_container
+#    environment:
+#      MYSQL_ROOT_PASSWORD: "123"
+#      MYSQL_DATABASE: agrepDB
+#      MYSQL_USER: agrep
+#      MYSQL_PASSWORD: "123"
+#    volumes:
+#      - db-data:/var/lib/mysql
+#      - ./mysql/:/docker-entrypoint-initdb.d/
+#    ports:
+#      - "3306:3306"
+#
+#volumes:
+#  db-data:
+
 version: '3'
 services:
-  mysql:
-    image: mysql:8
-    container_name: mysql_container
-    environment:
-      MYSQL_ROOT_PASSWORD: "123"
-      MYSQL_DATABASE: agrepDB
-      MYSQL_USER: agrep
-      MYSQL_PASSWORD: "123"
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./mysql/:/docker-entrypoint-initdb.d/
+  db:
+    image: mysql:8.0
     ports:
       - "3306:3306"
+    command: --skip-grant-tables
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: shelter
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - ./docker/volume_mysql:/var/lib/mysql
 
-volumes:
-  db-data:
+
+
+
 
 
 #version: "3"

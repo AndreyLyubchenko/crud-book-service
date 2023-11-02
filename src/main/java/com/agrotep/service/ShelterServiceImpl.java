@@ -5,7 +5,9 @@ import com.agrotep.dto.BookRequest;
 import com.agrotep.model.Book;
 import com.agrotep.repository.ShelterRepository;
 import com.agrotep.service.common.BookMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class ShelterServiceImpl implements ShelterService {
 
     final ShelterRepository shelterRepository;

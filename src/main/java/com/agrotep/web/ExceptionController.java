@@ -4,6 +4,8 @@ import com.agrotep.model.ErrorDescription;
 import com.agrotep.model.ErrorResponse;
 import com.agrotep.model.ValidationErrorResponse;
 import io.swagger.v3.oas.annotations.Hidden;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -25,8 +27,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @Hidden
 @RestControllerAdvice(annotations = RestController.class)
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class ExceptionController {
-    private static final Logger logger = getLogger(ExceptionController.class);
+    static final Logger logger = getLogger(ExceptionController.class);
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

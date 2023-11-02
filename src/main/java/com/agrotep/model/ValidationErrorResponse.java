@@ -1,9 +1,7 @@
 package com.agrotep.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -11,9 +9,10 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class ValidationErrorResponse
-        extends ErrorResponse {
-    private final List<ErrorDescription> errors;
+@FieldDefaults(level= AccessLevel.PRIVATE)
+public class ValidationErrorResponse extends ErrorResponse {
+
+    final List<ErrorDescription> errors;
 
     public ValidationErrorResponse(String message, List<ErrorDescription> errors) {
         super(message);

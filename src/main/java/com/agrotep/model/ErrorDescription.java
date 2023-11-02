@@ -1,9 +1,12 @@
 package com.agrotep.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class ErrorDescription {
-    private final String field;
-    private final String error;
+    final String field;
+    final String error;
 }
